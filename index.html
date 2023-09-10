@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>My App</title>
+     <link rel="icon" href="icon.png" type="image/png">
+     <link rel="stylesheet" href="index.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+     <section>
+          <div class="head-on">
+               <h1><img class="logo" src="icon.png"> My &nbsp;
+                    <span class="head-child">Products</span>
+               </h1>
+               <button class="js-reset-btn reset-btn" onclick="confirmReset();">
+                    Reset list
+               </button>
+          </div>
+          <div class="input-group mb-3">
+               <span class="input-group-text"><label for="myInput"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                              height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                              <path
+                                   d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                         </svg></label></span>
+               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" type="text"
+                    id="myInput" onkeyup="searchProducts()" placeholder="Search for products.." title="Type in a name">
+               <span class="input-group-text" onclick="clearFilter()"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                         height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                         <path
+                              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg></span>
+          </div>
+
+
+
+          <div class="todo-input-grid">
+               <input placeholder="Product name" class="js-todo input-name" />
+               <input placeholder="company name" class="js-todo2 input-name" />
+               <input type="date" class="js-todo-date input-date" />
+               <button onclick="
+     Addtodo();
+     " class="js-add-btn add-btn">Add</button>
+          </div>
+
+          <table id="myTable" class="table table-striped">
+               <thead>
+                    <tr>
+                         <th>Product Name</th>
+                         <th>Company Name</th>
+                         <th>Due Date</th>
+                         <th>Action</th>
+                    </tr>
+               </thead>
+               <tbody class="table-body js-todolist-table">
+                    <!-- JavaScript will populate the table body -->
+               </tbody>
+          </table>
+
+     </section>
+     <script src="index.js"></script>
+     <script>
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+              .then((registration) => {
+                console.log('Service Worker registered with scope:', registration.scope);
+              })
+              .catch((error) => {
+                console.error('Service Worker registration failed:', error);
+              });
+          }
+        </script>
+</body>
+
+</html>
