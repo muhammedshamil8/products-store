@@ -8,12 +8,11 @@ function todoListrender() {
           const todoObject = todoList[i];
           // const name = todoObject.name;
           // const duedate = todoObject.duedate;
-          const { name, duedate, companyname } = todoObject;
+          const { name, companyname } = todoObject;
           const html = `
           <tr class="tr">
      <td >${name}</td>
      <td > ${companyname}</td>
-     <td > ${duedate}</td>
           <td class="delete-btn-td"><button  onclick="
           const confirmation = confirm('Are you sure you want to delete the product?');
    
@@ -41,24 +40,20 @@ function Addtodo() {
     
      const todoInputname = document.querySelector('.js-todo');
      const todoInputcompanyname = document.querySelector('.js-todo2');
-     const todoInputdate = document.querySelector('.js-todo-date');
 
      const name = todoInputname.value;
      const companyname = todoInputcompanyname.value;
-     const duedate = todoInputdate.value;
 
      if (name) {
           todoList.push({
                // name:name,
                // duedate:duedate
                name,
-               companyname,
-               duedate
+               companyname
           });
           // console.log(todoList);
           todoInputname.value = '';
           todoInputcompanyname.value = '';
-          todoInputdate.value = '';
           todoListrender();
           saveTostorage();
           const buttonElement = document.querySelector('.js-add-btn');
