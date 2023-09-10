@@ -185,7 +185,7 @@ background-color: red;
      .todo-grid,
      .todo-input-grid {
           display: grid;
-          grid-template-columns: auto auto  70px;
+          grid-template-columns: 190px 190px  auto;
           column-gap: 12px;
           row-gap: 12px;
           align-items: center;
