@@ -180,17 +180,17 @@ background-color: red;
      }
      
      section {
-          min-width: 500px;
+          min-width: 400px;
      }
      .todo-grid,
-.todo-input-grid {
-     display: grid;
-     grid-template-columns: 200px 200px  auto;
-     column-gap: 12px;
-     row-gap: 12px;
-     align-items: center;
-
-}
+     .todo-input-grid {
+          display: grid;
+          grid-template-columns: auto auto  70px;
+          column-gap: 12px;
+          row-gap: 12px;
+          align-items: center;
+     
+     }
 .todo-input-grid {
      margin-bottom: 10px;
      align-items: stretch;
