@@ -1,3 +1,18 @@
+function displayOfflineMessage() {
+     const offlineMessage = `
+       <div class="offline-message">
+         <p>You are currently offline. Some features may not be available.</p>
+       </div>
+     `;
+     document.body.insertAdjacentHTML('afterbegin', offlineMessage);
+   }
+   
+   if (!navigator.onLine) {
+     displayOfflineMessage();
+   }
+   
+
+
 let todoList = JSON.parse(localStorage.getItem('todoList')) || [{}];
 
 
