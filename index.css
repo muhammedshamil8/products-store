@@ -180,12 +180,12 @@ background-color: red;
      }
      
      section {
-          min-width: 500px;
+          min-width: 400px;
      }
      .todo-grid,
      .todo-input-grid {
           display: grid;
-          grid-template-columns: 190px 190px  auto;
+          grid-template-columns: auto auto 60px;
           column-gap: 12px;
           row-gap: 12px;
           align-items: center;
