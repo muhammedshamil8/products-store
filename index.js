@@ -18,38 +18,43 @@ let todoList = JSON.parse(localStorage.getItem('todoList')) || [{}];
 function todoListrender() {
      let todoListHtml = '';
 
-     for (let i = 0; i < todoList.length; i++) {
-          const todoObject = todoList[i];
-          // const name = todoObject.name;
-          // const duedate = todoObject.duedate;
+    todoList.forEach((todoObject,index) => {
+     
+  
           const { name, companyname } = todoObject;
           const html = `
           <tr class="tr">
      <td >${name}</td>
      <td > ${companyname}</td>
-          <td class="delete-btn-td"><button  onclick="
-          const confirmation = confirm('Are you sure you want to delete the product?');
-   
-     if (confirmation) {
-          todoList.splice(${i},1);
-          todoListrender();
-     saveTostorage();
-     }
-
-          " class="delete-btn">Delete</button></td>
+          <td class="delete-btn-td"><button  class="delete-btn js-delete-todo-table">Delete</button></td>
      </tr>
 
      
           `;
           todoListHtml += html;
 
-     };
+    });
      // console.log(todoListHtml);
      document.querySelector('.js-todolist-table').innerHTML = todoListHtml;
      saveTostorage();
 
-}
-
+     document.querySelectorAll('.js-delete-todo-table')
+     .forEach((deleteButton,index)=>{
+          deleteButton.addEventListener('click',()=>{
+               const confirmation = confirm('Are you sure you want to delete the product?');
+   
+               if (confirmation) {
+                    todoList.splice(index,1);
+                    todoListrender();
+               saveTostorage();
+               }
+          })
+     })
+};
+document.querySelector('.js-add-btn')
+.addEventListener('click',()=>{
+     Addtodo();
+})
 function Addtodo() {
     
      const todoInputname = document.querySelector('.js-todo');
@@ -83,7 +88,7 @@ function Addtodo() {
             }, 2000); 
           }
      } else {
-          alert('Please fill product_name fields.');
+          alert('Please fill product name fields.');
      }
 
 }
@@ -91,7 +96,7 @@ function saveTostorage() {
      localStorage.setItem('todoList', JSON.stringify(todoList));
 }
 function resetList() {
-     todoList.splice(0);
+     // todoList.splice(0);
      todoList = [];
      todoListrender();
      saveTostorage();
@@ -99,7 +104,7 @@ function resetList() {
     
 }
 
-console.log(todoListrender());
+// console.log(todoListrender());
 
 function confirmReset() {
      const confirmation = confirm('Are you sure you want to clear the list?');

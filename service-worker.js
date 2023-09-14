@@ -5,7 +5,7 @@ const urlsToCache = [
   'index.html',
   'index.js',
   'icon.png',
-  'offline.html' // Add the offline page to the cache
+  'offline.html' 
 ];
 self.addEventListener('fetch', event => {
   event.respondWith(
