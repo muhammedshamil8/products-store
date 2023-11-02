@@ -24,9 +24,10 @@ self.addEventListener('fetch', event => {
             }
             // If offline.html is also not found in the cache, you can return a simple response
             // with a custom message.
-            return new Response('<h1>Offline</h1><p>You are currently offline.</p>', {
-              headers: { 'Content-Type': 'text/html' }
-            });
+            
+            // return new Response('<h1>Offline</h1><p>You are currently offline.</p>', {
+            //   headers: { 'Content-Type': 'text/html' }
+            // });
           });
       })
   );

@@ -96,8 +96,8 @@ function saveTostorage() {
      localStorage.setItem('todoList', JSON.stringify(todoList));
 }
 function resetList() {
-     // todoList.splice(0);
-     todoList = [];
+     todoList.splice(0);
+     // todoList = [];
      todoListrender();
      saveTostorage();
      localStorage.removeItem('todoList');
@@ -149,3 +149,4 @@ function clearFilter() {
      input.value = ""; 
      searchProducts(); 
 }
+todoListrender();
