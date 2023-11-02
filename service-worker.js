@@ -5,7 +5,7 @@ const urlsToCache = [
   'index.html',
   'index.js',
   'icon.png',
-  'offline.html', 
+  'offline.html' // Create an offline fallback page
 ];
 
 self.addEventListener('install', (event) => {
@@ -24,6 +24,12 @@ self.addEventListener('fetch', (event) => {
         return response;
       }
 
+      // When offline, serve the offline.html page as a fallback
+      if (!navigator.onLine) {
+        return caches.match('offline.html');
+      }
+
+      // If the request is not in the cache and online, fetch it from the network
       return fetch(event.request)
         .then((networkResponse) => {
           if (!networkResponse.ok) {
@@ -36,10 +42,6 @@ self.addEventListener('fetch', (event) => {
           });
 
           return networkResponse;
-        })
-        .catch(() => {
-          // When offline, serve the offline.html page
-          return caches.match('offline.html');
         });
     })
   );

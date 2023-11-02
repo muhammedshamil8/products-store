@@ -10,8 +10,8 @@ if ('serviceWorker' in navigator) {
 
 function displayOfflineMessage() {
      const offlineMessage = `
-       <div class="offline-message">
-         <p>You are currently offline. Some features may not be available.</p>
+       <div class="offline-message offline">
+         <p>You are currently offline.</p>
        </div>
      `;
      document.body.insertAdjacentHTML('afterbegin', offlineMessage);
