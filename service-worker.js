@@ -15,21 +15,29 @@ const urlsToCache = [
          })
      );
    });
-   self.addEventListener('fetch', event => {
+   self.addEventListener('fetch', (event) => {
      event.respondWith(
-       fetch(event.request)
-         .catch(() => caches.match(event.request))
-         .then(response => {
-           if (response) {
+       Promise.race([
+         fetch(event.request)
+           .then((response) => {
+             // Cache the fetched response for future use
+             const responseClone = response.clone();
+             caches.open(CACHE_NAME)
+               .then((cache) => cache.put(event.request, responseClone));
              return response;
-           }
-           // If the requested resource is not in cache and there's no network, serve the offline page
-           if (event.request.mode === 'navigate') {
+           })
+           .catch(() => {
+             // Network request failed, try to serve an offline page
              return caches.match('offline.html');
-           }
+           }),
+         new Promise((_, reject) => {
+           // Set a timeout for the network request
+           setTimeout(() => reject(new Error('Request timed out')), 5000); // Adjust the timeout as needed
          })
+       ])
      );
    });
+   
 
 //    self.addEventListener('fetch', event => {
 //      event.respondWith(
