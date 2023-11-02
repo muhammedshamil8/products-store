@@ -150,3 +150,49 @@ function clearFilter() {
      searchProducts(); 
 }
 todoListrender();
+if ('serviceWorker' in navigator) {
+     navigator.serviceWorker.register('service-worker.js')
+       .then((registration) => {
+         console.log('Service Worker registered with scope:', registration.scope);
+       })
+       .catch((error) => {
+         console.error('Service Worker registration failed:', error);
+       });
+   }
+   let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  // Prevent the default browser install prompt
+  event.preventDefault();
+
+  // Store the event for later use
+  deferredPrompt = event;
+
+  // Display your own custom install button or prompt
+  // For example, you can show a button on your web page
+  // that triggers the installation when clicked
+  showInstallPrompt();
+});
+
+function showInstallPrompt() {
+  // Display your custom install button and handle the user click
+  const installButton = document.querySelector('#install-button');
+
+  installButton.addEventListener('click', () => {
+    // Show the browser's install prompt
+    deferredPrompt.prompt();
+
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice
+      .then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+        deferredPrompt = null; // Reset the deferredPrompt
+      });
+  });
+
+  installButton.style.display = 'block'; // Show the button
+}
