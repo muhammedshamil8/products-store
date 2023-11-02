@@ -35,7 +35,13 @@ section {
      align-items: center;
 
 }
-
+.input-search-child{
+     cursor: pointer;
+}
+.input-search-child:hover,
+.input-search-child:active{
+     background-color: #eecdcd;
+}
 table {
      border-collapse: collapse;
      width: 100%;

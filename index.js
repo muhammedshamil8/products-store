@@ -12,7 +12,7 @@ function displayOfflineMessage() {
    }
    
 
-let todoList = JSON.parse(localStorage.getItem('todoList')) || [{}];
+let todoList = JSON.parse(localStorage.getItem('todoList')) || [];
 
 
 function todoListrender() {
