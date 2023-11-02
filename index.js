@@ -1,3 +1,13 @@
+if ('serviceWorker' in navigator) {
+     navigator.serviceWorker.register('service-worker.js')
+       .then(function (registration) {
+         console.log('Service Worker registered with scope:', registration.scope);
+       })
+       .catch(function (error) {
+         console.error('Service Worker registration failed:', error);
+       });
+   }
+
 function displayOfflineMessage() {
      const offlineMessage = `
        <div class="offline-message">
@@ -151,15 +161,7 @@ function clearFilter() {
 }
 
 todoListrender();
-if ('serviceWorker' in navigator) {
-     navigator.serviceWorker.register('service-worker.js')
-       .then((registration) => {
-         console.log('Service Worker registered with scope:', registration.scope);
-       })
-       .catch((error) => {
-         console.error('Service Worker registration failed:', error);
-       });
-   }
+/*
    let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (event) => {
@@ -204,3 +206,4 @@ document.querySelector('.card-close').addEventListener('click', () => {
           cardInstall.style.display = 'none'; // Hide the card after the animation
         }, 1000);
    });
+   */
