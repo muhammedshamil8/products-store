@@ -8,6 +8,61 @@ body {
      /* flex-direction: column; */
      justify-content: space-around;
 }
+.cardInstall {
+     position: absolute;
+     background-color: rgb(199, 179, 179);
+     right: 0;
+     margin: 5px;
+     border-radius: 5px;
+     padding: 5px;
+     z-index: 5;
+     width: 200px;
+     display: flex;
+     text-align: center;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     padding-top: 20px;
+     animation: popDown 1.5s ease-out; /* Apply both animations */
+     transform-origin: top center;
+   }
+   
+  
+   
+   @keyframes popDown {
+     0% {
+       transform: translateY(-200px); /* Start with the card moved up */
+     }
+     100% {
+       transform: translateY(0); /* End with the card at its normal position */
+     }
+   }
+   @keyframes fadeIn {
+     from {
+       opacity: 1; /* Start with 0 opacity (completely transparent) */
+     }
+     to {
+       opacity: 0; /* End with 1 opacity (fully visible) */
+     }
+   }
+.card-close{
+     position: absolute;
+right: 0;
+top: 0;
+margin: 3px;
+cursor: pointer;
+
+}
+.insta-btn {
+     margin: 5px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     padding: 5px;
+     cursor: pointer;
+   }
+   
+  
+   
 
 section {
      background-color: #ddd;

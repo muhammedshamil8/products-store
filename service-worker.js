@@ -7,6 +7,7 @@ const urlsToCache = [
   'icon.png',
   'offline.html' 
 ];
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -16,43 +17,30 @@ self.addEventListener('install', (event) => {
   );
 });
 
-self.addEventListener('fetch', event => {
-  if (event.request.url.startsWith(self.origin + '/api/')) {
-    event.respondWith(
-      caches.open(CACHE_NAME).then((cache) =>
-        cache.match(event.request).then((response) => {
-          return (
-            response ||
-            fetch(event.request).then((networkResponse) => {
-              // Clone the response before caching it
-              cache.put(event.request, networkResponse.clone());
-              return networkResponse;
-            })
-            );
-          })
-        )
-      );
-    }else{
-      event.respondWith(
-        caches.match(event.request).then((response) => {
-          if (response) {
-            return response;
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      if (response) {
+        return response;
+      }
+
+      return fetch(event.request)
+        .then((networkResponse) => {
+          if (!networkResponse.ok) {
+            throw new Error('Network response was not ok');
           }
 
-        // If the requested resource is not in cache, serve the offline page
-        return fetch(event.request)
-          .catch(() => caches.match('offline.html')) // Serve offline.html when there's an error
-          .then(notFoundResponse => {
-            if (notFoundResponse) {
-              return notFoundResponse;
-            }
-            // If offline.html is also not found in the cache, you can return a simple response
-            // with a custom message.
-            return new Response('<h1>Offline</h1><p>You are currently offline.</p>', {
-              headers: { 'Content-Type': 'text/html' }
-            });
+          const clone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, clone);
           });
-      })
-    );
-  }
+
+          return networkResponse;
+        })
+        .catch(() => {
+          // When offline, serve the offline.html page
+          return caches.match('offline.html');
+        });
+    })
+  );
 });

@@ -149,6 +149,7 @@ function clearFilter() {
      input.value = ""; 
      searchProducts(); 
 }
+
 todoListrender();
 if ('serviceWorker' in navigator) {
      navigator.serviceWorker.register('service-worker.js')
@@ -196,3 +197,10 @@ function showInstallPrompt() {
 
   installButton.style.display = 'block'; // Show the button
 }
+document.querySelector('.card-close').addEventListener('click', () => {
+     const cardInstall = document.querySelector('.cardInstall');
+     cardInstall.style.animation = ' fadeIn 1s ease-in'; // Apply fade-out animation
+     setTimeout(() => {
+          cardInstall.style.display = 'none'; // Hide the card after the animation
+        }, 1000);
+   });
