@@ -5,7 +5,7 @@ body {
      transform: translate(50%,50%); */
      /* padding-left: 20%; */
      display: flex;
-     flex-direction: column;
+     /* flex-direction: column; */
      justify-content: space-around;
      align-items: center;
 }
@@ -255,7 +255,7 @@ background-color: red;
      }
      .input-name,
 .input-date {
-     padding: 6px;
+     padding: 3px;
      font-size: 10px;
      border: 1px solid #ddd;
      border-radius: .25em;
@@ -282,7 +282,7 @@ th {
      .todo-grid,
      .todo-input-grid {
           display: grid;
-          grid-template-columns: 190px 190px  auto;
+          grid-template-columns: 35%  35% auto;
           column-gap: 12px;
           row-gap: 12px;
           align-items: center;
@@ -293,8 +293,20 @@ th {
      align-items: stretch;
 }
 .head-on {
-     grid-template-columns: 70% 30%;
+     grid-template-columns: 70% auto;
      font-size: medium;
+     justify-content: space-between;
+}
+.head-on h1{
+ display: flex;
+ justify-content: right;
+ font-size: 25px;
+}
+.logo{
+     height: 30px;
+     width: 30px;
+     border-radius: 20px;
+     border: 1px solid #000;
 }
 .delete-btn {
      font-size: 10px;
@@ -303,13 +315,13 @@ th {
 
 .reset-btn {
     
-     font-size: 12px;
+     font-size: 10px;
      cursor: pointer;
      border-radius: .25em;
-     padding: 4px 2px;
+     padding: 4px 6px;
      border-top-right-radius: 12px;
      border-bottom-left-radius: 12px;
-     margin-left: 20px;
+     
      /* Add some space between the reset button and the title */
 }
    }
@@ -321,10 +333,10 @@ th {
      section {
           min-width: 100%;
      }
-       .todo-grid,
+     .todo-grid,
      .todo-input-grid {
           display: grid;
-          grid-template-columns: 105px 100px  auto;
+          grid-template-columns: 40%  40% auto;
           column-gap: 12px;
           row-gap: 12px;
           align-items: center;
@@ -332,8 +344,8 @@ th {
      }
      .input-name,
      .input-date {
-          padding: 3px;
-          font-size: 10px;
+          padding: 5px;
+          font-size: 12px;
           border: 1px solid #ddd;
           border-radius: .25em;
           transition: border-color 0.2s;
@@ -362,5 +374,27 @@ th {
      .delete-btn {
           font-size: 10px;
           padding: 4px;
+     }
+   }
+   @media (max-width: 320px){
+     .head-on {
+          grid-template-columns: 100%;
+          font-size: medium;
+          justify-content: space-between;
+     }
+     .head-on h1{
+      display: flex;
+      font-size: 18px;
+      align-items: center;
+      justify-content: center;
+     }
+     .reset-btn {
+    display: none;
+     }
+     .logo{
+          height: 25px;
+          width: 25px;
+          border-radius: 20px;
+          border: 1px solid #000;
      }
    }

@@ -10,9 +10,9 @@ if ('serviceWorker' in navigator) {
 
 function displayOfflineMessage() {
      const offlineMessage = `
-       <div class="offline-message offline">
+       <section class="offline">
          <p>You are currently offline.</p>
-       </div>
+       </section>
      `;
      document.body.insertAdjacentHTML('afterbegin', offlineMessage);
    }
